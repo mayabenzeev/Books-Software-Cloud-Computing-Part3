@@ -16,7 +16,7 @@ jobs:
         echo "Maya Ben Zeev, Noga Brenner, Eden Zehavy" >> log.txt
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v4
+      uses: docker/setup-buildx-action@v3
       with:
         context: ./book-service
         outputs: type=docker, dest=/tmp/image.tar
@@ -110,7 +110,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Start Docker Compose
         run: docker-compose up -d
