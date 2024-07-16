@@ -6,7 +6,7 @@ COPY BooksService/BooksCollection.py .
 COPY BooksService/BooksAPI.py .
 COPY BooksService/run.py .
 COPY requirements.txt .
-COPY tests/ tests/
+COPY tests/ ./tests/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
