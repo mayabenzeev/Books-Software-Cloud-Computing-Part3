@@ -6,7 +6,8 @@ COPY BooksService/BooksCollection.py .
 COPY BooksService/BooksAPI.py .
 COPY BooksService/run.py .
 COPY requirements.txt .
-COPY tests/ ./tests/
+COPY ./tests /app/tests/
+
 
 # List contents of /app to verify
 RUN ls -la
