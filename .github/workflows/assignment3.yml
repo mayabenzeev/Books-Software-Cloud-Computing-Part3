@@ -56,7 +56,7 @@ jobs:
       uses: actions/download-artifact@v4
 
     - name: Load Docker images from previous workflows
-      run: docker load --input tmp/image.tar
+      run: docker load --input book-service/image.tar
 
     - name: check books image is loaded
       run: docker image ls
