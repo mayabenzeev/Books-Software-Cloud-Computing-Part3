@@ -49,7 +49,7 @@ jobs:
 
     - name: Execute pytest inside the container
       run: |
-        if docker exec books-service python -m pytest -v /app/tests/; then
+        if docker exec books-service python -m pytest -v ./tests/assn3_tests.py; then
           echo "tests succeeded" >> log.txt
         else
           echo "tests failed" >> log.txt
