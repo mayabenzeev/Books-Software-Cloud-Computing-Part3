@@ -45,7 +45,7 @@ jobs:
     - name: Check container is running
       run: |
         docker ps
-        docker exec books-service ls -a
+        docker exec books-service ls -l /app/tests/
 
     - name: Execute pytest inside the container
       run: |
