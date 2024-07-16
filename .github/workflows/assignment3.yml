@@ -16,7 +16,7 @@ jobs:
         echo "Maya Ben Zeev, Noga Brenner, Eden Zehavy" >> log.txt
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v5
+      uses: docker/setup-buildx-action@v4
       with:
         context: ./book-service
         outputs: type=docker, dest=/tmp/image.tar
