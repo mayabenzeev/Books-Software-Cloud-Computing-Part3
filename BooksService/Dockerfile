@@ -6,7 +6,7 @@ COPY BooksService/BooksCollection.py .
 COPY BooksService/BooksAPI.py .
 COPY BooksService/run.py .
 COPY requirements.txt .
-ADD tests .
+COPY tests/ ./tests/
 
 
 # List contents of /app to verify
