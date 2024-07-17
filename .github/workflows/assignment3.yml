@@ -152,12 +152,22 @@ jobs:
 
       - name: Issue Queries and Record Results
         run: |
+          set -e
           touch response.txt
-          while IFS= read -r line; do
+          if [ ! -f query.txt ]; then
+            echo "query.txt file not found!" >&2
+            exit 1
+          fi
+          
+          while read -r line; do
+            echo "Processing query: $line"
             echo "query: $line" >> response.txt
-            response_body=$(curl -s -w "\n%{http_code}" "${{ env.BOOKS_URL }}$line")
-            status_code=$(echo "$response_body" | tail -n1)
-            response_body=$(echo "$response_body" | head -n -1)
+            
+            response=$(curl -s -w "\n%{http_code}" "${BOOKS_URL}$line")
+            status_code=$(echo "$response" | tail -n1)
+            response_body=$(echo "$response" | head -n -1)
+            
+            echo "HTTP status code: $status_code"
             
             if [[ "$status_code" -eq 200 ]]; then
               echo "response: $response_body" >> response.txt
