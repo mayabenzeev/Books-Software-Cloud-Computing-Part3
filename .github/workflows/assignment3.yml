@@ -39,12 +39,6 @@ jobs:
           name: books-service-image
           path: /tmp/books-service.tar
 
-      - name: Upload MongoDB image artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: mongo-image
-          path: /tmp/mongo.tar
-
       - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,12 +56,12 @@ jobs:
       - name: Download Docker Image Artifact
         uses: actions/download-artifact@v3
         with:
-          path: /tmp
+          name: books-service-image
+          path: /tmp/books-service
 
       - name: Load Docker images from previous workflows
         run: |
           docker load --input /tmp/books-service.tar
-          docker load --input /tmp/mongo.tar
 
       - name: Check images are loaded
         run: docker image ls
@@ -84,7 +78,6 @@ jobs:
       - name: Check container is running #TODO: for us "docker exec books-service ls -laR /app  "
         run: |
           docker ps
-          docker exec books-service ls -laR /app  
 
       # Set up python env for running tests
       - name: Set up Python
