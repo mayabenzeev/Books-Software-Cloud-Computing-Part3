@@ -122,6 +122,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Download Docker Image Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: books-service-image
+          path: /tmp
+
       - name: Start Docker Compose
         run: docker-compose up -d
 
