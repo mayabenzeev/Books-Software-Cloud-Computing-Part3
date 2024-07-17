@@ -151,20 +151,43 @@ jobs:
           curl -X POST -H "Content-Type: application/json" -d '{"title": "Second Foundation", "ISBN": "9780553293364", "genre": "Science Fiction"}' ${{ env.BOOKS_URL }}      
 
       - name: Issue Queries and Record Results
-        run: |
-          touch response.txt
-          while read -r line; do
-            echo "query: $line" >> response.txt
-            response_body=$(curl -s -w "\n%{http_code}" "${{ env.BOOKS_URL }}$line")
-            status_code=$(echo "$response_body" | tail -n1)
-            response_body=$(echo "$response_body" | head -n -1)
+        # run: |
+        #   touch response.txt
+        #   while read -r line; do
+        #     echo "query: $line" >> response.txt
+        #     response_body=$(curl -s -w "\n%{http_code}" "${{ env.BOOKS_URL }}$line")
+        #     status_code=$(echo "$response_body" | tail -n1)
+        #     response_body=$(echo "$response_body" | head -n -1)
             
-            if [[ "$status_code" -eq 200 ]]; then
-              echo "response: $response_body" >> response.txt
-            else
-              echo "response: error $status_code" >> response.txt
-            fi
-          done < query.txt
+        #     if [[ "$status_code" -eq 200 ]]; then
+        #       echo "response: $response_body" >> response.txt
+        #     else
+        #       echo "response: error $status_code" >> response.txt
+        #     fi
+        #   done < query.txt
+
+        run: |
+        touch response.txt
+        if [ ! -f query.txt ]; then
+          echo "query.txt not found!" >> error.log
+          exit 1
+        fi
+        while read -r line; do
+          echo "Processing query: $line" >> error.log
+          echo "query: $line" >> response.txt
+          response_body=$(curl -s -w "\n%{http_code}" "${{ env.BOOKS_URL }}$line")
+          status_code=$(echo "$response_body" | tail -n1)
+          response_body=$(echo "$response_body" | head -n -1)
+
+          if [[ "$status_code" -eq 200 ]]; then
+            echo "response: $response_body" >> response.txt
+          else
+            echo "response: error $status_code" >> response.txt
+          fi
+        done < query.txt || {
+          echo "Error processing queries" >> error.log
+          exit 1
+        }
 
       - name: Upload Results
         if: always()
