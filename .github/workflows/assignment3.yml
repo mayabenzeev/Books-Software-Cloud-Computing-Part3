@@ -162,12 +162,6 @@ jobs:
           while read -r line; do
             echo "Processing query: $line"
             echo "query: $line" >> response.txt
-
-            # Validate query string (simple check for this example)
-            if [[ ! "$line" =~ ^\?.+$ ]]; then
-              echo "Invalid query string: $line" >> response.txt
-              continue
-            fi
             
             response=$(curl -s -w "\n%{http_code}" "${BOOKS_URL}$line")
 
