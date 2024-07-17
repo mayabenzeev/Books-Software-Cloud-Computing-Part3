@@ -164,8 +164,11 @@ jobs:
             echo "query: $line" >> response.txt
             
             response=$(curl -s -w "\n%{http_code}" "${BOOKS_URL}$line")
+            echo "response: $response"
             status_code=$(echo "$response" | tail -n1)
+            echo "status_code: $status_codeu"
             response_body=$(echo "$response" | head -n -1)
+            echo "response_body: $response_body"
             
             echo "HTTP status code: $status_code"
             
