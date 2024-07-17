@@ -27,8 +27,8 @@ jobs:
 
       - name: Export images to a tar file
         run: |
-          docker save books-service > /tmp/books-service.tar
-          docker save mongodb > /tmp/mongo.tar
+          docker save books-service:latest > /tmp/books-service.tar
+          docker save mongodb:latest > /tmp/mongo.tar
 
       - name: Upload books image artifact
         uses: actions/upload-artifact@v3

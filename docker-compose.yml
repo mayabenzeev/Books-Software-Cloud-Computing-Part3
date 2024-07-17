@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: BooksService/Dockerfile
+    image: books-service:latest
     container_name: books-service
     ports:
       - "5001:80"
