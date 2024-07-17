@@ -30,9 +30,10 @@ jobs:
 
       - name: Export images to a tar file
         run: |
-          IMAGE_NAME=$(docker images --format "{{.Repository}}" | grep "books-service" | head -n 1)
-          docker save -o /tmp/books-service.tar $IMAGE_NAME
-          docker save -o /tmp/mongo.tar mongo
+            BOOKS_SERVICE_IMAGE=$(docker images --format "{{.Repository}}" | grep "books-service" | head -n 1)
+            MONGO_IMAGE=$(docker images --format "{{.Repository}}" | grep "mongo" | head -n 1)
+            docker save -o /tmp/books-service.tar $BOOKS_SERVICE_IMAGE
+            docker save -o /tmp/mongo.tar $MONGO_IMAGE
 
       - name: Upload books image artifact
         uses: actions/upload-artifact@v3
