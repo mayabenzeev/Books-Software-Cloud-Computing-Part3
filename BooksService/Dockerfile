@@ -6,11 +6,6 @@ COPY BooksService/BooksCollection.py .
 COPY BooksService/BooksAPI.py .
 COPY BooksService/run.py .
 COPY requirements.txt .
-COPY tests/ /app/tests/
-
-
-# List contents of /app to verify
-RUN ls -la /app/tests/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
