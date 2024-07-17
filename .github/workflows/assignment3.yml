@@ -57,7 +57,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: books-service-image
-          path: /tmp/books-service
+          path: /tmp
 
       - name: Load Docker images from previous workflows
         run: |
