@@ -130,7 +130,7 @@ jobs:
 
       - name: Post Books to Initialize Data
         run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"title": "Adventures of Huckleberry Finn", "ISBN": "9780520343641", "genre": "Fiction"}' ${{ env.BOOKS_UR${{ env.BOOKS_URL }}
+          curl -X POST -H "Content-Type: application/json" -d '{"title": "Adventures of Huckleberry Finn", "ISBN": "9780520343641", "genre": "Fiction"}' ${{ env.BOOKS_URL }}
           curl -X POST -H "Content-Type: application/json" -d '{"title": "The Best of Isaac Asimov", "ISBN": "9780385050784", "genre": "Science Fiction"}' ${{ env.BOOKS_URL }}
           curl -X POST -H "Content-Type: application/json" -d '{"title": "Fear No Evil", "ISBN": "9780394558783", "genre": "Biography"}' ${{ env.BOOKS_URL }}
           curl -X POST -H "Content-Type: application/json" -d '{"title": "The Adventures of Tom Sawyer", "ISBN": "9780195810400", "genre": "Fiction"}' ${{ env.BOOKS_URL }}
