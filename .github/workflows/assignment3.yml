@@ -27,17 +27,11 @@ jobs:
 
       - name: List Docker images after build
         run: docker images
-      - name: Diagnostics before saving images
-        run: |
-          ls -la /tmp
-          pwd
-          whoami
-          df -h
 
       - name: Export images to a tar file
         run: |
-          docker save books-service:latest > /tmp/books-service.tar
-          docker save mongodb:latest > /tmp/mongo.tar
+          docker save -o /tmp/books-service.tar books-service:latest
+          docker save -o /tmp/mongo.tar mongo:latest
 
       - name: Upload books image artifact
         uses: actions/upload-artifact@v3
