@@ -25,6 +25,9 @@ jobs:
             exit 1 
           fi
 
+      - name: List Docker images after build
+        run: docker images
+
       - name: Export images to a tar file
         run: |
           docker save books-service:latest > /tmp/books-service.tar
