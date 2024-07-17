@@ -27,6 +27,12 @@ jobs:
 
       - name: List Docker images after build
         run: docker images
+      - name: Diagnostics before saving images
+        run: |
+          ls -la /tmp
+          pwd
+          whoami
+          df -h
 
       - name: Export images to a tar file
         run: |
