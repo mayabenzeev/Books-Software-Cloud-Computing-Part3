@@ -27,14 +27,14 @@ jobs:
 
       - name: Export images to a tar file
         run: |
-          docker save book-service:latest > /tmp/book-service.tar
-          docker save mongo:latest > /tmp/mongo.tar
+          docker save books-service > /tmp/books-service.tar
+          docker save mongodb > /tmp/mongo.tar
 
       - name: Upload books image artifact
         uses: actions/upload-artifact@v3
         with:
-          name: book-service-image
-          path: /tmp/book-service.tar
+          name: books-service-image
+          path: /tmp/books-service.tar
 
       - name: Upload MongoDB image artifact
         uses: actions/upload-artifact@v3
@@ -63,7 +63,7 @@ jobs:
 
       - name: Load Docker images from previous workflows
         run: |
-          docker load --input /tmp/book-service.tar
+          docker load --input /tmp/books-service.tar
           docker load --input /tmp/mongo.tar
 
       - name: Check images are loaded
