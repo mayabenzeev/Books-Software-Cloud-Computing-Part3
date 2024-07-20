@@ -40,7 +40,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: logs
+          name: log
           path: /tmp/log.txt
 
   test:
@@ -63,7 +63,7 @@ jobs:
       - name: Download log file
         uses: actions/download-artifact@v4
         with:
-          name: logs
+          name: log
           path: /tmp
 
       - name: Check images are loaded
@@ -107,7 +107,7 @@ jobs:
       #   if: always()
       #   uses: actions/upload-artifact@v4
       #   with:
-      #     name: logs
+      #     name: log
       #     path: |
       #       /tmp/log.txt
       #       tests/assn3_test_results.txt
