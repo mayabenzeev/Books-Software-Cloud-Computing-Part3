@@ -103,14 +103,31 @@ jobs:
             exit 1
           fi
 
-      - name: Upload test results and logs
+      # - name: Upload test results and logs
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: logs
+      #     path: |
+      #       /tmp/log.txt
+      #       tests/assn3_test_results.txt
+      #     overwrite: true
+
+      - name: Upload log file
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: logs
-          path: |
-            /tmp/log.txt
-            tests/assn3_test_results.txt
+          name: log
+          path: /tmp/log.txt
+          overwrite: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test_results
+          path: tests/assn3_test_results.txt
+
 
       - name: Shut down docker compose
         if: always()
