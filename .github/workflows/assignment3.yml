@@ -25,6 +25,9 @@ jobs:
             exit 1 
           fi
       ########
+      - name: Wait for the images to be pulled
+        run: sleep 5
+
       - name: Check built images
         run: |
           docker images
@@ -82,7 +85,7 @@ jobs:
             exit 1
           fi
 
-      - name: Check container is running #TODO: for us "docker exec books-service ls -laR /app  "
+      - name: Check container is running
         run: |
           docker ps
 
