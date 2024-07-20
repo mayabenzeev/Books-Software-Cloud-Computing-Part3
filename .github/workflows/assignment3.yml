@@ -19,6 +19,7 @@ jobs:
       - name: Build image to tarfile
         run: |
           if docker-compose build; then
+            docker pull mongo:latest
             echo "image successfully built" >> /tmp/log.txt
             else
             echo "image not able to be built" >> /tmp/log.txt
