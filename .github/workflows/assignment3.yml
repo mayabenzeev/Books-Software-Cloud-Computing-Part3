@@ -16,7 +16,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build image to tarfile #TODO: check if need to do /tmp/log.txt
+      - name: Build image to tarfile
         run: |
           if docker-compose build; then
             echo "image successfully built" >> /tmp/log.txt
@@ -24,7 +24,11 @@ jobs:
             echo "image not able to be built" >> /tmp/log.txt
             exit 1 
           fi
-
+      ########
+      - name: Check built images
+        run: |
+          docker images
+      #######
       - name: Export images to a tar file
         run: |
             BOOKS_SERVICE_IMAGE=$(docker images --format "{{.Repository}}" | grep "books-service" | head -n 1)
