@@ -18,7 +18,7 @@ jobs:
 
       - name: Build image to tarfile
         run: |
-          if docker-compose build; then
+          if docker-compose build --no-cache; then
             echo "image successfully built" >> /tmp/log.txt
             else
             echo "image not able to be built" >> /tmp/log.txt
@@ -85,6 +85,9 @@ jobs:
       # Set up python env for running tests
       - name: Set up Python
         uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.7'
+          update-environment: true
 
       - name: Install dependencies
         run: |

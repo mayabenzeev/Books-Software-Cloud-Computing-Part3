@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Copy the app contents into the container at /app
 COPY BooksService/BooksCollection.py .
-# COPY BooksService/BooksAPI.py .
+COPY BooksService/BooksAPI.py .
 COPY BooksService/run.py .
 COPY requirements.txt .
 
