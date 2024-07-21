@@ -233,5 +233,5 @@ class BooksId(Resource):
         """
         _, status = self.books_collection.delete_book(book_id)
         if status == 404:
-            return {'message': 'Book ID not recognized'}, 4043
-        return {'ID': book_id, 'message': 'Book deleted successfully'}, 2003
+            return {'message': 'Book ID not recognized'}, 404
+        return {'ID': book_id, 'message': 'Book deleted successfully'}, 200
