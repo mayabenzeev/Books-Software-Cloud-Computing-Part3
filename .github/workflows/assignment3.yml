@@ -118,7 +118,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test_results
+          name: assn3_test_results
           path: tests/assn3_test_results.txt
 
       - name: Shut down docker compose
@@ -200,7 +200,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: query_results
+          name: response
           path: response.txt
 
       - name: Shut down Docker Compose
