@@ -68,7 +68,7 @@ jobs:
 
       - name: Start Docker Compose - Run containers on built images
         run: |
-          if docker-compose up -d; then
+          if docker compose up -d; then
             echo "Container up and running" >> /tmp/log.txt
           else
             echo "Container failed to run" >> /tmp/log.txt
@@ -116,7 +116,7 @@ jobs:
 
       - name: Shut down docker compose
         if: always()
-        run: docker-compose down
+        run: docker compose down
             
 
   query:
@@ -139,7 +139,7 @@ jobs:
           docker load --input /tmp/books-service.tar
       - name: Start Docker Compose
         run: |
-          if docker-compose up -d; then
+          if docker compose up -d; then
             echo "Container up and running" >> /tmp/log.txt
           else
             echo "Container failed to run" >> /tmp/log.txt
@@ -193,4 +193,4 @@ jobs:
 
       - name: Shut down Docker Compose
         if: always()
-        run: docker-compose down
+        run: docker compose down
