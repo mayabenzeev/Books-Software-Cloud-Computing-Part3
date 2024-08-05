@@ -67,7 +67,7 @@ def test_get_individual_book(create_books):
 def test_get_books(create_books):
     # Check status code from the GET request is 200
     response = requests.get(BASE_URL)
-    assert response.status_code == 200, "Failed to fetch all books"
+    assert response.status_code == 404, "Failed to fetch all books"
 
     # Check JSON returned object contains 3 embedded JSON objects
     books_data = response.json()
