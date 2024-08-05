@@ -16,6 +16,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Check Docker Compose Version
+        run: docker-compose --version
+
       - name: Build image to tarfile
         run: |
           if docker-compose build --no-cache; then
