@@ -143,6 +143,7 @@ def test_post_books():
     assert len(set(books_data_tuples)) == 3
 
 
+
 def test_get_query():
     res = requests.get(f"{BASE_URL}?authors=Isaac Asimov")
     assert res.status_code == 200
