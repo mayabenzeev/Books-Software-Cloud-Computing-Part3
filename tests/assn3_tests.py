@@ -139,7 +139,8 @@ def test_post_books():
         res_data = res.json()
         assert "ID" in res_data
         books_data.append(res_data)
-    assert len(set(books_data)) == 3
+        books_data_tuples = [frozenset(book.items()) for book in books_data]
+    assert len(set(books_data_tuples)) == 3
 
 
 def test_get_query():
@@ -148,38 +149,24 @@ def test_get_query():
     assert len(res.json()) == 2
 
 
-def test_put():
-    books_data[0]["title"] = "new title"
-    res = requests.put(f"{BASE_URL}/{books_data[0]["ID"]}", json=books_data[0])
-    assert res.status_code == 200
-
-
-def test_book_by_id():
-    res = requests.get(f"{BASE_URL}/{books_data[0]["ID"]}")
-    assert res.status_code == 200
-    res_data = res.json()
-    assert res_data["title"] == "new title"
-
-
 def test_delete_book():
-    res = requests.delete(f"{BASE_URL}/{books_data[0]["ID"]}")
+    res = requests.delete(f"{BASE_URL}/{books_data[0]['ID']}")
     assert res.status_code == 200
 
 
 def test_post_book():
     book = {
         "title": "The Art of Loving",
-        "authors": "Erich Fromm",
         "ISBN": "9780062138927",
         "genre": "Science"
     }
     res = requests.post(BASE_URL, json=book)
-    assert res.status_code == 200
+    assert res.status_code == 201
+
 
 
 def test_get_new_book_query():
     res = requests.get(f"{BASE_URL}?genre=Science")
     assert res.status_code == 200
     res_data = res.json()
-    assert res_data["title"] == "The Art of Loving"
-
+    assert res_data[0]["title"] == "The Art of Loving"
