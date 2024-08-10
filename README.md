@@ -21,6 +21,6 @@ NOTE: Projects 1-2 can be found in a seperate repository
 /ratings/{id}/values : POST<br />
 /top : GET
 
-#### Collaborators: Maya Ben-Zeev ; Noga Brenner ; Eden Zehavy
+#### Collaborators: Maya Ben-Zeev ; Noga Brenner ; Eden Zehavi
 
 Nir - second commit
